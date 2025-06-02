@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="football.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club World Cup 2025 Giveaway</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        :root {
+            --bg-color: rgba(0, 0, 0, 0.8);
+            --text-color: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-text: #333;
+            --slider-overlay: rgba(0,0,0,0.5);
+        }
+        
+        [data-theme="light"] {
+            --bg-color: rgba(255, 255, 255, 0.9);
+            --text-color: #333;
+            --card-bg: rgba(0, 0, 0, 0.95);
+            --card-text: white;
+            --slider-overlay: rgba(255,255,255,0.5);
+        }
+        
+        body {
+            background: url('worldcup-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .main-container {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .header-slider {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        
+        .slider-track {
+            display: flex;
+            height: 100%;
+            animation: scroll 25s linear infinite;
+        }
+        
+        .slider-image {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-300%); }
+        }
+        
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--slider-overlay);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .country-flag {
+            width: 25px;
+            height: 18px;
+            margin-left: 10px;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+        
+        .club-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            background-color: var(--card-bg);
+            height: 100%;
+        }
+        
+        .club-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+        }
+        
+        .club-logo {
+            height: 180px;
+            object-fit: contain;
+            width: 100%;
+            padding: 20px;
+            background: white;
+        }
+        
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .club-name {
+            color: var(--card-text);
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .join-btn {
+            background-color: #28a745;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            width: 100%;
+            max-width: 200px;
+            transition: all 0.3s;
+        }
+        
+        .join-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        [data-theme="light"] .theme-toggle {
+            color: #333;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-slider {
+                height: 200px;
+            }
+            
+            .slider-overlay h1 {
+                font-size: 1.8rem;
+            }
+            
+            .club-logo {
+                height: 150px;
+                padding: 15px;
+            }
+            
+            .theme-toggle {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="container-fluid main-container">
+        <!-- Header Slider -->
+        <div class="header-slider">
+            <div class="slider-track">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018" class="slider-image" alt="Stadium">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e" class="slider-image" alt="Trophy">
+                <img src="1.webp" class="slider-image" alt="Fans">
+                <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781" class="slider-image" alt="Match">
+            </div>
+            <div class="slider-overlay">
+                <h1 class="display-4 fw-bold mb-3">Club World Cup 2025 Giveaway</h1>
+                <p class="lead d-none d-md-block" style="color:yellow; font-size: large; font-weight: bold;">Join our giveaway now for a chance to win tickets to watch your favorite team !</p>
+            </div>
+        </div>
+
+        <!-- Country Selection -->
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 col-xl-4">
+                <div class="form-floating mb-5">
+                    <select class="form-select form-select-lg" id="countrySelect">
+                        <option selected disabled>Choose your country</option>
+                        <option value="brazil">Brazil <img src="brazil-flag.png" class="country-flag" alt="BR"></option>
+                        <option value="mexico">Mexico <img src="mexico-flag.png" class="country-flag" alt="MX"></option>
+                        <option value="argentina">Argentina <img src="argentina-flag.png" class="country-flag" alt="AR"></option>
+                    </select>
+                    <label for="countrySelect">Select Country</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clubs Container -->
+        <div class="row g-4 justify-content-center" id="clubsContainer">
+            <!-- Clubs will appear here dynamically -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelect = document.getElementById('countrySelect');
+            const clubsContainer = document.getElementById('clubsContainer');
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference or use preferred color scheme
+            const savedTheme = localStorage.getItem('theme') || 
+                              (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            htmlElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+            
+            function updateThemeIcon(theme) {
+                const icon = themeToggle.querySelector('i');
+                if (theme === 'dark') {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                } else {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+            
+            const clubsData = {
+                brazil: [
+                    { 
+                        name: "CR Flamengo", 
+                        logo: "FLAMENGO1.PNG", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=69274" 
+                    },
+                    { 
+                        name: "SE Palmeiras", 
+                        logo: "palmerass.png", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=69274" 
+                    },
+                    { 
+                        name: "Botafogo FR", 
+                        logo: "bta.jpg", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=69274" 
+                    },
+                    { 
+                        name: "Fluminense FC", 
+                        logo: "flo.jpg", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=69274" 
+                    }
+                ],
+                mexico: [
+                    { 
+                        name: "CF Pachuca", 
+                        logo: "pachoka.png", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=67902" 
+                    },
+                    { 
+                        name: "CF Monterrey", 
+                        logo: "montryy.png", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=51827" 
+                    }
+                ],
+                argentina: [
+                    { 
+                        name: "Boca Juniors", 
+                        logo: "boca.jpg", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=69534" 
+                    },
+                    { 
+                        name: "River Plate", 
+                        logo: "rever.png", 
+                        link: "https://singingfiles.com/show.php?l=0&u=921465&id=69534" 
+                    }
+                ]
+            };
+
+            countrySelect.addEventListener('change', function() {
+                const country = this.value;
+                clubsContainer.innerHTML = '';
+                
+                if (country && clubsData[country]) {
+                    clubsData[country].forEach(club => {
+                        const col = document.createElement('div');
+                        col.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+                        
+                        col.innerHTML = `
+                            <div class="club-card">
+                                <img src="${club.logo}" class="club-logo" alt="${club.name}">
+                                <div class="card-body">
+                                    <h4 class="club-name">${club.name}</h4>
+                                    <a href="${club.link}" class="btn join-btn">Join Giveaway</a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        clubsContainer.appendChild(col);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
